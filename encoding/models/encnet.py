@@ -140,8 +140,9 @@ def get_encnet(dataset='pascal_voc', backbone='resnet50', pretrained=False,
     model = EncNet(datasets[dataset.lower()].NUM_CLASS, backbone=backbone, root=root, **kwargs)
     if pretrained:
         from .model_store import get_model_file
+        print (acronyms[dataset])
         model.load_state_dict(torch.load(
-            get_model_file('encnet_%s_%s'%(backbone, acronyms[dataset]), root=root)))
+            get_model_file('encnet_{}_{}'.format(backbone, acronyms[dataset]), root=root)))
     return model
 
 def get_encnet_resnet50_pcontext(pretrained=False, root='~/.encoding/models', **kwargs):

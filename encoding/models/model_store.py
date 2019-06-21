@@ -28,6 +28,7 @@ encoding_repo_url = 'https://hangzh.s3.amazonaws.com/'
 _url_format = '{repo_url}encoding/models/{file_name}.zip'
 
 def short_hash(name):
+    print (name)
     if name not in _model_sha1:
         raise ValueError('Pretrained model for {name} is not available.'.format(name=name))
     return _model_sha1[name][:8]
@@ -52,6 +53,7 @@ def get_model_file(name, root=os.path.join('~', '.encoding', 'models')):
     """
     file_name = '{name}-{short_hash}'.format(name=name, short_hash=short_hash(name))
     root = os.path.expanduser(root)
+    print(root)
     file_path = os.path.join(root, file_name+'.pth')
     sha1_hash = _model_sha1[name]
     if os.path.exists(file_path):
